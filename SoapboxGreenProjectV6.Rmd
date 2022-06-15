@@ -1,0 +1,369 @@
+---
+title: "Soapbox Competition Research"
+author: "Research Team"
+date: "Shane Robbins, Nikolai Baldwin, & Chase Giles"
+output:
+  rmdformats::downcute
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+library(mosaic)
+library(tidyverse)
+library(plotly)
+library(rmarkdown)
+library(prettydoc)
+library(knitr)
+library(DT)
+library(pander)
+library(car)
+library(DataExplorer)
+library(dplyr)
+
+```
+
+## Phase 1 Research {.tabset .tabset-fade}
+
+### Week 1 {.tabset .tabset-pills} 
+
+
+#### Eco-friendly Targets
+
+**Target Audience Characteristics**
+
+
+*Youth and Millennials*
+
+Empirical research has shown that youth's consumption behaviors are positively related with and influenced by green knowledge and attitude [Amoako et al. (2020)](https://www.emerald.com/insight/content/doi/10.1108/IJPPM-12-2019-0595/full/pdf).
+
+
+It was also found that college age millennial's intrinsic desire for green consumption was contingent upon their frugal rationale. Since millennials are in early stages of financial development, it would be consistent with the idea that they would accentuate saving money [Naderi & Steenburg (2017)](https://www.emerald.com/insight/content/doi/10.1108/YC-08-2017-00722/full/pdf?title=me-first-then-the-environment-young-millennials-as-green-consumers).
+
+Green consumption for this group is also related to their intrinsic motive to help the environment deriving from their attachment to nature and striving to keep a healthy environment around them [Arroyo & Lezama (2022)](https://www.icesi.edu.co/revistas/index.php/estudios_gerenciales/article/view/4701).
+
+*Millennials, Gen x, and Boomers*
+
+Baby boomers and millennials both came of age during a time of environmental awareness [Delafrooz et al. (2014)](https://www.qscience.com/content/journals/10.5339/connect.2014.5). The baby boomer generation has been shown to report a higher affinity to consuming green than Generation X and Millennials. Millennials and Generation X showed no differences [Squires (2019)](https://escholarship.org/uc/item/6f91213q). However, there was a weak relationship with actual number of green purchases and reported green values.
+
+**Target Audience Demographics**
+
+*Ideal Demographics*
+
+Evidence has found that those who are consciously consuming green are more likely to have more formal education, earn more money, and are female [Roberts (1999)](https://www.sciencedirect.com/science/article/pii/0148296395001506?via%3Dihub). 
+
+
+It was also shown that Democrats supported green movements more than Republicans did and have a higher concern towards the environment than Republicans do on average [Jones (2022)](https://news.gallup.com/poll/391679/climate-change-proposals-favored-solid-majorities.aspx). Also, Democrats on average feel that environmental preservation should be a priority even if it means sacrificing energy produced from natural gasses, petroleum and coal [Jones (2022)](https://news.gallup.com/poll/391319/americans-energy-worries-surge.aspx). 
+
+
+Studies have shows that more women on average care more for the environment than men do, 
+
+*Non-ideal Demographics*
+
+The target demographics for our non-ideal audience has found to be those who are male, have less formal education, White, and of the Republican party.
+
+The following graph shows the difference in proportion by gender of global warming concern. Data was collected from a [Gallup poll](https://news.gallup.com/poll/355427/americans-concerned-global-warming.aspx) based on combined data from 2017 to 2021.
+
+```{r message=FALSE, warning=FALSE, echo=FALSE} 
+
+# Graph shows the global warming views by gender. Note: Graphs will not knit to pdf due to plotly package. Need to insert .jpeg file from this r block output.
+
+library(tinytex)
+
+GlobalWarmingConcerns <- c(
+  "Worry a Great Deal",
+  "Will Pose Serious Risk",
+  "Human Caused")
+GWCMen <- c(59, 38, 60)
+GWCWomen <- c(70, 50, 70)
+GWCData <- data.frame(GlobalWarmingConcerns, GWCMen, GWCWomen)
+
+GWCfig <- plot_ly(GWCData,
+                  x = ~GlobalWarmingConcerns, 
+                  y = ~GWCMen,
+                  type = "bar",
+                  name = "Men",
+                  marker = list(color = "steelblue"))
+GWCfig <- GWCfig %>% 
+  add_trace(
+    y = ~GWCWomen,
+    name = "Women",
+    marker = list(color = "plum"))
+GWCfig <- GWCfig %>%
+  layout(barmode = "stack",
+         paper_bgcolor = 'rgba(247, 247, 247, 1)',
+         plot_bgcolor = 'rgba(247,247,247,1)',
+    title = "\n Global Warming Views by Gender",
+    xaxis = list(title = "Global Warming Concerns"),
+    yaxis = list(title = "Proportion of Global Warming Concern in %"))
+GWCfig
+  
+```
+
+
+*Figure 1*
+
+Women on average in this study showed greater concern form global warming than men do by proportion. Views on whether global warming was due to human causation differed by 10% (Women = 70%, Men = 60%). Views on whether global warming will pose a serious risk differed by 12% (Women = 50%, Men = 38%,). Differences in proportion of worrying a great deal about global warming differed by 11% (Women = 70%, Men = 59%).
+
+
+---
+
+#### Competition and Novelty
+
+**Involved Organizations**
+
+1. [Eden Projects](https://www.edenprojects.org/)
+
+    + Reforestation projects that work with other leaders involved in ecological projects.
+    + Work with [corporate partners](https://www.edenprojects.org/corporate-partners).
+    + [Foundation Partners](https://www.edenprojects.org/foundations).
+    + Individual donors and volunteers
+    
+2. [Jane Goodall Institute](https://www.janegoodall.org/)
+
+    + Global organization that is focused on protecting chimpanzees. 
+    + Have an [Online Learning Project](https://www.janegoodall.org/online-learning/).
+        - Roots & Shoots free online course to earn credits at the University of Colorado Boulder.
+    + [Project Fuel Efficient Stoves](https://www.janegoodall.org/fuel-efficient-stoves/)
+    + [Youth Project](https://news.janegoodall.org/2022/04/01/inspiring-youth-project-of-the-month-native-wildlife-oasis/?_ga=2.11668656.560155483.1651429028-550722974.1651429028#utm_source=rss&utm_medium=rss)
+    
+3. [5 Gyres](https://www.5gyres.org/)
+
+    + Mission: empowering action against the global health crisis of plastic pollution through science, education, and advocacy.
+    + Partnered with: Liquid Death, Moen, ProGrade Digital, Klean Kanteen, Everything but Water, and Peach Not Plastic.
+        - The above companies all have a plastic removal movement. 
+        
+4. [CO~2~OL Effect](https://www.cooleffect.org/projects)
+
+    + Mission is to reduce carbon emissions. 
+    + Public can purchase carbon offsets
+    + Partners with 3M, salesforce, nuun hydration, American Airlines, unity, Twitter, and many others.
+    + Here are some [projects](https://www.cooleffect.org/projects) they are doing currently to reduce carbon footprint.
+    
+5. [ASA Wright Nature Centre](https://asawright.org/reduce-reuse-recycle-in-action/#:~:text=Reduce%20Reuse%20Recycle%20in%20Action,classroom%2C%20school%2C%20home)
+
+    + 3 R's challenge Reduce, Reuse, Recycle in Action 
+    + Winners get Ipads/tech prizes
+    
+    
+6. [Peace Corps](https://www.peacecorps.gov/educators/resources/reduce-reuse-recycle/)
+
+    + Another Reduce, Reuse, Recycle movement.
+    + Held a recycling competition working with Green Marshalls group. 
+        -Paid for the items elementary school kids recycled.
+        
+7. [Walpole Recycling Committee](https://www.walpole-ma.gov/sites/g/files/vyhlif1381/f/uploads/flyer_for_reduce_reuse_recycle_and_compost_contest_2021.pdf)
+
+    + The city made a recycling campaign for all students K-12.
+    + Create a poster of video to show us what you do to reduce, reuse, recycle, or compost.
+    + Submissions were either a 30 second video, a digital poster or photo of your poster.
+    
+8. [Green and Prosperous](https://www.greenandprosperous.com/blog/2017/10/11/how-does-thrift-shopping-help-you-save-the-environment)
+
+    + How does thrift shopping help you save the environment?
+
+---
+
+<!-- Real Estate, communities, thrifting -->
+
+<!-- What social media platforms does target audience use? 
+What kinds of prizes/feedback is our -->
+  
+
+
+#### Results
+
+**Graph**
+
+The following graph contains data from the same [Gallup Poll](https://news.gallup.com/poll/355427/americans-concerned-global-warming.aspx).
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+# Graph showing the differences in age groups 
+
+library(plotly)
+
+GlobalWarmingConcerns <- c(
+  "Worry a Great Deal",
+  "Will Pose Serious Risk",
+  "Human Caused")
+Age18to29 <- c(78, 61, 81)
+Age30to49 <- c(67, 50, 68)
+Age50to64 <- c(57, 39, 57)
+Age65Plus <- c(60, 26, 56)
+
+GWCAgeData <- data.frame(Age18to29, 
+               Age30to49, 
+               Age50to64,
+               Age65Plus,
+               GlobalWarmingConcerns)
+
+GWCAgefig <- plot_ly(GWCAgeData,
+                     x = ~GlobalWarmingConcerns,
+                     y = ~Age18to29,
+                     type = "bar",
+                     name = "18-29")
+GWCAgefig <- GWCAgefig %>% 
+  add_trace(y = ~Age30to49,
+            name = "30-49")
+GWCAgefig <- GWCAgefig %>%
+  add_trace(y = ~Age50to64,
+            name = "50-64")
+GWCAgefig <- GWCAgefig %>%
+  add_trace(y = ~Age65Plus,
+            name = "65+")
+GWCAgefig <- GWCAgefig %>%
+  layout(
+    xaxis = list(
+      title = "Global Warming Concerns"),
+    yaxis = list(
+      title = "Proportion of Concern in %"),
+    title = "\n Global Warming Concern by Age Group",
+    paper_bgcolor = 'rgba(247, 247, 247, 1)',
+         plot_bgcolor = 'rgba(247,247,247,1)')
+GWCAgefig
+```
+
+*Figure 2*
+
+The figure above displays the proportion of global warming concern in the different age groups sampled. The age group that reported the most concern for global warming were the 18 to 29 year old individuals (_M_ = 73.3). 
+
+**Table**
+
+
+The following table illustrates mean statistics from the graphic.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE} 
+
+pander(GWCAgeData %>%
+  summarise("Table 1"= "Mean Proportion of Global Warming Concern",
+            "18-29" = mean(Age18to29),
+            "30-49" = mean(Age30to49),
+            "50-64" = mean(Age50to64),
+            "65+" = mean(Age65Plus)))
+```
+
+
+### Week 2 {.tabset .tabset-pills}
+
+#### Social Media
+
+**Media Platforms**
+
+Evidence has shown that about 84% of 18-29 year-old individuals report using any social media sites ever [Anderson & Auxier (2021)](https://www.pewresearch.org/internet/2021/04/07/social-media-use-in-2021/).
+
+With the majority of this age group reporting using Instagram (76%) and Snapchat (75%) with around half reporting using TikTok (55%) [Anderson & Auxier (2021)](https://www.pewresearch.org/internet/2021/04/07/social-media-use-in-2021/).
+
+The following graph displays the data gathered on the poll from [Anderson & Auxier (2021)](https://www.pewresearch.org/internet/2021/04/07/social-media-use-in-2021/) showing the proportion of social media users in their sample categorized by gender.
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+
+library(plotly)
+
+SMPlatforms <- c("Facebook", 
+                 "Insta",
+                 "Pintrest",
+                 "Snap", 
+                 "Twitter", 
+                 "TikTok")
+SMMen <- c(61, 36, 16, 22, 25, 17)
+SMWomen <- c(77, 44, 46, 28, 22, 24)
+SMGender <- c(SMMen, SMWomen)
+SM18to29 <- c(70, 71, 32, 65, 42, 48)
+SMData <- data.frame(SMMen, SMWomen, SMGender, SMPlatforms, GWCAgeData, SM18to29)
+
+SMfig <- plot_ly(SMData,
+        x=~SMPlatforms,
+        y=~SMMen,
+        type = "bar",
+        name = "Men",
+        marker = list(color = "slateblue"))
+SMfig <- SMfig %>%
+  add_trace(y=~SMWomen,
+            name = "Women",
+            marker = list(color = "violet"))
+SMfig <- SMfig %>%
+  layout(title = "\n Gender Differences by Social Media Platform",
+         xaxis = list(title = "Social Media Platforms"),
+         yaxis = list(title = "Proportion of Sample Using Media"),
+         paper_bgcolor = 'rgba(247, 247, 247, 1)',
+         plot_bgcolor = 'rgba(247,247,247,1)')
+SMfig
+
+```
+*Figure 3*
+
+The results from the poll displayed proportions of their sample that used different platforms of social media. The graphic above split the results between men and women to show the demographic differences. There was a greater proportion of women that used social media on average compared to men except for when it came to Twitter (Men, *M* = 25; Women, *M* = 22). 
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+
+library(pander)
+
+pander(SMData %>%
+         summarise("Table 2" = c("Mean", "SD"),
+                   "Proportion Women" = c(mean(SMWomen),
+                                               sd(SMWomen)),
+                   "Proportion Men" = c(mean(SMMen),
+                                             sd(SMMen))
+         ))
+
+```
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+
+SMAgefig <- plot_ly(SMData,
+                    x=~SMPlatforms,
+                    y=~SM18to29,
+                    type = "bar",
+                    marker = list(color = "salmon"))
+SMAgefig <- SMAgefig %>%
+  layout(title = "\n Social Media Platforms for 18 to 29 year-olds",
+         xaxis = list(title = "Social Media Platforms"),
+         yaxis = list(title = "Percent of Population Using Media"),
+         paper_bgcolor = 'rgba(247, 247, 247, 1)',
+         plot_bgcolor = 'rgba(247,247,247,1)')
+SMAgefig
+
+```
+
+**Prizes and Feedback**
+
+Findings have shown that advertisement that features equality-based rewards such as random drawings and equal chance is more appealing to liberals whereas proportionality-based rewards where the more you donate the better of a chance you have of winning [Lee et al.(2018)](https://journals.sagepub.com/doi/10.1509/jppm.16.180).
+
+**Motive and Types of Incentives**
+
+Two types of incentives were analyzed by [Palamidovska & Ciunova-shuleska (2020)](https://repository.ukim.mk/handle/20.500.12188/9702) as motivating factors of brand engagement based on the gratification theory. Brand engagement was measured in terms of intention to contribute to the brand content by commenting, sharing, liking, etc. 
+
+_Communal or socializing_ incentives are motives of engaging in media posts based on the outcome of gaining social benefits. This includes collaborating with others and building connections with one's community. [Tsai & Men (2013)](https://www.tandfonline.com/doi/abs/10.1080/15252019.2013.826549) made claims that "parasocial interaction and community identification" play a major role in gaining customer engagement on social media. 
+
+_Self-interest or personal_ incentives envelop the concepts of boosting self-image and ego. Users will engage in social media posts to build one's identity and character on a virtual platform. Based on the study by [Muntinga et al. (2011)](https://www.tandfonline.com/doi/abs/10.2501/IJA-30-1-013-046) the personal character identities can have three classifications (self-presentation, self-expression, and self-assurance) that are related to brand contributions. 
+
+_Results_ from the study suggested that social incentives (*communal*) can be positive  predictors of intrinsic motivation to contribute to three types of brand-related content (lifestyle affairs, personal opinions, commercial message). Relationship-oriented factors play a significant role in media engagement. They concluded that __"companies should provide relevant information, interesting enough and at the same time appropriate for sharing, having fun and keeping in touch with friends"__ [(Palamidovska & Ciunova-shuleska, 2020)](https://repository.ukim.mk/handle/20.500.12188/9702).
+
+#### Thrifting
+
+
+
+#### DIY
+
+**Do-it-yourself**
+
+The study done by [Upadhyay et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1002/bse.2846) intends to understand the challenges of logistic infrastructure and the adoption of the DIY business strategies to encourage a more eco-friendly environment. 
+
+*Applications on DIY* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
