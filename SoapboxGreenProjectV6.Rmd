@@ -19,7 +19,9 @@ library(pander)
 library(car)
 library(DataExplorer)
 library(dplyr)
-
+library(rio)
+library(stringi)
+library(stringr)
 ```
 
 ## Phase 1 Research {.tabset .tabset-fade}
